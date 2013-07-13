@@ -20,3 +20,9 @@ cleanup and reformatting. Each line in the cross reference file contains a cross
 reference of the format:
 
 Book.Chapter.Verse Book.Chapter.Verse
+
+Stopwords
+=========
+
+Stopwords contains various stopword lists. Each list gives one stopword per
+line. Each stopword has been lowercased and stripped of punctuation.

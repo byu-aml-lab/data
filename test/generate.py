@@ -19,4 +19,6 @@ def generate_sentence(language):
 def generate_document(language):
     return ' '.join(generate_sentence(language) for _ in range(roll_xdy(3, 3)))
 
-    return ' '.join(sentences)
+def mix_language(base, intruder, rate):
+    intrude_length = int(len(base) * rate / (1 - rate))
+    return base + random.sample(intruder, intrude_length)

@@ -40,7 +40,8 @@ def write_corpus(categories, prefix, names=None):
         root = os.path.join(prefix, name)
         try:
             os.makedirs(root)
-        except OSError:
+        except OSError as e:
+            print e
             pass
 
         for i, document in enumerate(category):
@@ -58,7 +59,7 @@ def main():
     languages = [latin, english, latin_mix, english_mix]
 
     corpus = generate_corpus(languages, 20)
-    write_corpus(corpus, 'data')
+    write_corpus(corpus, os.path.join(train_root, '../data'))
 
 if __name__ == '__main__':
     main()

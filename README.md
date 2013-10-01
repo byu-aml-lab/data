@@ -20,6 +20,14 @@ subdirectory is a posting. Note that each file has a header that describes the
 document metadata in more detail. This header should not be included as part of
 the posting, and can be skipped by reading the file after the first blank line.
 
+Enron
+=====
+
+The Enron dataset includes emails which were made public during the Federal
+Energy Regulatory Commision investigation of the company. Subsequently, the
+Linguistic Data Consortium labeled a subset of the emails. We include just
+those emails which have annotations.
+
 Bible
 =====
 

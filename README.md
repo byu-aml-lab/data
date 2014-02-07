@@ -43,6 +43,19 @@ reference of the format:
 
 Book.Chapter.Verse Book.Chapter.Verse
 
+Ambient
+=======
+
+The Ambient (AMBIgous ENTries) dataset contains a set of topics, sub-topics and
+ranked search results with snippets for the purpose of testing web search clustering.
+It has 44 topics, each with 100 results.
+
+Moresque
+========
+
+Moresque (MORE Sense-tagged QUEries) is a complement to Ambient.
+It contains 114 topics, each with 100 results.
+
 Stopwords
 =========
 

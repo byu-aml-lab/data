@@ -1,0 +1,68 @@
+#!/usr/bin/env python
+"""Extracts a query dataset for modelt"""
+
+import os
+import argparse
+
+def ensure_dir(path):
+    """Ensures that a directory path exists"""
+    try:
+        os.makedirs(path)
+    except OSError as err:
+        if err.errno != 17:
+            raise
+
+
+def read_tabular(filename, skip_header=True):
+    """Reads a tabular file into a list of tuple"""
+    lines = open(filename).readlines()
+    if skip_header:
+        lines = lines[1:]
+    return [line.rstrip('\n').split('\t') for line in lines]
+
+
+def read_docs(results_file):
+    """Reads a result file into a topic-doc dict of snippets"""
+    split = {}
+    for topic_rank, _, _, snippet in read_tabular(results_file):
+        topic, rank = topic_rank.split('.')
+        if topic not in split:
+            split[topic] = {}
+        split[topic][rank] = snippet
+    return split
+
+
+def read_topics(relation_file):
+    """Reads a relation file into a topic-doc dict of subtopics"""
+    split = {}
+    for topic_subtopic, topic_rank in read_tabular(relation_file):
+        topic, subtopic = topic_subtopic.split('.')
+        topic, rank = topic_rank.split('.')
+        if topic not in split:
+            split[topic] = {}
+        split[topic][rank] = subtopic
+    return split
+
+
+def rewrite_queries(results_file, relation_file):
+    """Extracts a query dataset and rewrites it for modelt"""
+    docs = read_docs(results_file)
+    topics = read_topics(relation_file)
+    for topic in topics:
+        for subtopic in set(topics[topic].itervalues()):
+            ensure_dir(os.path.join('data', topic, subtopic))
+        for rank, subtopic in topics[topic].iteritems():
+            with open(os.path.join('data', topic, subtopic, rank), 'w') as out:
+                out.write(docs[topic][rank])
+
+
+def main():
+    """Runs the extraction process"""
+    parser = argparse.ArgumentParser()
+    parser.add_argument('results', nargs='?', default='results.txt')
+    parser.add_argument('relation', nargs='?', default='strel.txt')
+    args = parser.parse_args()
+    rewrite_queries(args.results, args.relation)
+
+if __name__ == '__main__':
+    main()

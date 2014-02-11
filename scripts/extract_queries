@@ -13,19 +13,24 @@ def ensure_dir(path):
             raise
 
 
-def read_tabular(filename, skip_header=True):
+def read_tabular(filename, num_cols, skip_header=True):
     """Reads a tabular file into a list of tuple"""
     lines = open(filename).readlines()
     if skip_header:
         lines = lines[1:]
-    return [line.rstrip('\n').split('\t') for line in lines]
+    lines = [line.rstrip('\n').split('\t') for line in lines]
+    return [line + [''] * (num_cols - len(line)) for line in lines]
 
 
 def read_docs(results_file):
     """Reads a result file into a topic-doc dict of snippets"""
     split = {}
-    for topic_rank, _, _, snippet in read_tabular(results_file):
-        topic, rank = topic_rank.split('.')
+    for topic_rank, _, _, snippet in read_tabular(results_file, 4):
+        try:
+            topic, rank = topic_rank.split('.')
+        except ValueError:
+            print topic_rank
+            raise
         if topic not in split:
             split[topic] = {}
         split[topic][rank] = snippet
@@ -35,7 +40,7 @@ def read_docs(results_file):
 def read_topics(relation_file):
     """Reads a relation file into a topic-doc dict of subtopics"""
     split = {}
-    for topic_subtopic, topic_rank in read_tabular(relation_file):
+    for topic_subtopic, topic_rank in read_tabular(relation_file, 2):
         topic, subtopic = topic_subtopic.split('.')
         topic, rank = topic_rank.split('.')
         if topic not in split:

@@ -25,7 +25,7 @@ def read_tabular(filename, num_cols, skip_header=True):
 def read_docs(results_file):
     """Reads a result file into a topic-doc dict of snippets"""
     split = {}
-    for topic_rank, _, _, snippet in read_tabular(results_file, 4):
+    for topic_rank, _, title, snippet in read_tabular(results_file, 4):
         try:
             topic, rank = topic_rank.split('.')
         except ValueError:
@@ -33,7 +33,7 @@ def read_docs(results_file):
             raise
         if topic not in split:
             split[topic] = {}
-        split[topic][rank] = snippet
+        split[topic][rank] = ' '.join((title.replace('_', ' '), snippet))
     return split
 
 

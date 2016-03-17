@@ -67,6 +67,12 @@ Moresque
 Moresque (MORE Sense-tagged QUEries) is a complement to Ambient.
 It contains 114 topics, each with 100 results.
 
+State of the Union
+==================
+This dataset contains all of the text of the state of the union speeches up to
+2010. Each file contains a single speech, with the filename giving the
+president and the speech number.
+
 Stopwords
 =========
 

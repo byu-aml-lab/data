@@ -20,6 +20,14 @@ subdirectory is a posting. Note that each file has a header that describes the
 document metadata in more detail. This header should not be included as part of
 the posting, and can be skipped by reading the file after the first blank line.
 
+Amazon
+======
+
+This is a collection of roughly 40,000 product reviews on Amazon. The txt file
+contains the text of the reviews. Each line consists of a document id followed
+by the review text. Each line of the review file consists of a document id
+(corresponding to the txt file), and the number of starts (1-5).
+
 Enron
 =====
 

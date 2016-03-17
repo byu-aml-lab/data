@@ -20,6 +20,9 @@ subdirectory is a posting. Note that each file has a header that describes the
 document metadata in more detail. This header should not be included as part of
 the posting, and can be skipped by reading the file after the first blank line.
 
+This dataset is also available in a form with duplicate documents removed. The
+duplicates are usually due to cross posting between newsgroups.
+
 Amazon
 ======
 

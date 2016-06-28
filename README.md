@@ -20,6 +20,17 @@ subdirectory is a posting. Note that each file has a header that describes the
 document metadata in more detail. This header should not be included as part of
 the posting, and can be skipped by reading the file after the first blank line.
 
+This dataset is also available in a form with duplicate documents removed. The
+duplicates are usually due to cross posting between newsgroups.
+
+Amazon
+======
+
+This is a collection of roughly 40,000 product reviews on Amazon. The txt file
+contains the text of the reviews. Each line consists of a document id followed
+by the review text. Each line of the review file consists of a document id
+(corresponding to the txt file), and the number of starts (1-5).
+
 Enron
 =====
 
@@ -55,6 +66,12 @@ Moresque
 
 Moresque (MORE Sense-tagged QUEries) is a complement to Ambient.
 It contains 114 topics, each with 100 results.
+
+State of the Union
+==================
+This dataset contains all of the text of the state of the union speeches up to
+2010. Each file contains a single speech, with the filename giving the
+president and the speech number.
 
 Stopwords
 =========
